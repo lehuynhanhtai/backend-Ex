@@ -5,10 +5,6 @@ import { IsNumber, IsString } from 'class-validator';
 export class UpdateUserDto extends PartialType(CreateUserDto) {
   @ApiProperty()
   @IsString()
-  id: string;
-
-  @ApiProperty()
-  @IsString()
   name: string;
 
   @ApiProperty()
