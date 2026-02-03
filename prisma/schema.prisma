@@ -14,3 +14,50 @@ model User {
   age   Int
   phone String
 }
+
+//sản phẩm
+model Product {
+  id          String   @id @default(cuid())
+  image       String
+  name        String
+  price       Int
+  description String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now())
+
+  items OrderItem[]
+}
+
+//đơn hàng
+model Order {
+  id               String      @id @default(cuid())
+  customer_name    String
+  customer_email   String
+  customer_phone   String
+  customer_address String
+  payment_method   String
+  total_price      Int
+  status           OrderStatus @default(pending)
+  created_at       DateTime    @default(now())
+  updated_at       DateTime    @default(now())
+  orderItems       OrderItem[]
+}
+
+//chi tiết đơn hàng
+model OrderItem {
+  id         String   @id @default(cuid())
+  order_id   String
+  product_id String
+  quantity   Int
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  order   Order   @relation(fields: [order_id], references: [id])
+  product Product @relation(fields: [product_id], references: [id])
+}
+
+enum OrderStatus {
+  pending
+  paid
+  cancelled
+}
