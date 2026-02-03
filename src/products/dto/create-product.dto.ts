@@ -1,22 +1,25 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDate, IsNumber, IsString } from 'class-validator';
-import { faker } from '@faker-js/faker';
-import { Type } from 'class-transformer';
+import { IsNumber, IsString } from 'class-validator';
 
 export class CreateProductDto {
-  @ApiProperty({ example: faker.internet.username() })
+  @ApiProperty({ example: 'eco-bottle-2024' })
   @IsString()
   name: string;
 
-  @ApiProperty({ example: faker.image.url() })
+  @ApiProperty({
+    example: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8',
+  })
   @IsString()
   image: string;
 
-  @ApiProperty({ example: faker.lorem.sentence() })
+  @ApiProperty({
+    example:
+      'A high-quality, durable water bottle made from recycled materials.',
+  })
   @IsString()
   description: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: 29.99 })
   @IsNumber()
   price: number;
 }
