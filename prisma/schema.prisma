@@ -30,17 +30,18 @@ model Product {
 
 //đơn hàng
 model Order {
-  id               String      @id @default(cuid())
-  customer_name    String
-  customer_email   String
-  customer_phone   String
-  customer_address String
-  payment_method   String
-  total_price      Int
-  status           OrderStatus @default(pending)
-  created_at       DateTime    @default(now())
-  updated_at       DateTime    @default(now())
-  orderItems       OrderItem[]
+  id             String      @id @default(cuid())
+  name           String
+  email          String
+  phone          String
+  address        String
+  payment_method String
+  total_price    Int
+  status         OrderStatus @default(pending)
+  notes          String
+  created_at     DateTime    @default(now())
+  updated_at     DateTime    @default(now())
+  orderItems     OrderItem[]
 }
 
 //chi tiết đơn hàng
